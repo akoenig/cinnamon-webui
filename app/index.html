@@ -9,11 +9,12 @@
     <title>cinnamon</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
+    <link rel="stylesheet" href="styles/semantic/css/semantic.min.css">
+
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
 </head>
   <body data-ng-app="akoenig.cinnamon">
     <!--[if lt IE 7]>
@@ -26,7 +27,13 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" data-ng-view></div>
+    <div class="ui grid">
+        <div class="column" data-ng-view></div>
+    </div>
+
+    <footer>
+        <small>&copy; 2013, <a href="http://iam.andrekoenig.info">André König</a></small>
+    </footer>
 
         <!-- build:js scripts/libs.js -->
         <script src="scripts/vendor/angular-unstable/angular.js"></script>
@@ -35,7 +42,10 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/home.js"></script>
+        <script src="scripts/services/config.js"></script>
+        <script src="scripts/services/build.js"></script>
+        <script src="scripts/services/logfile.js"></script>
         <!-- endbuild -->
 </body>
 </html>

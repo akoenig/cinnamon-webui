@@ -13,11 +13,14 @@
 var akoenig = akoenig || {};
 
 akoenig.cinnamon = angular.module('akoenig.cinnamon', ['ngRoute']).config([
+
+    '$routeProvider',
+
     function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
+                templateUrl: 'views/home.html',
+                controller: 'HomeController'
             })
             .otherwise({
               redirectTo: '/'
