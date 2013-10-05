@@ -12,10 +12,11 @@
 
 akoenig.cinnamon.controller('HomeController', [
     '$scope',
+    '$timeout',
     'BuildService',
     'LogfileService',
 
-    function ($scope, BuildService, LogfileService) {
+    function ($scope, $timeout, BuildService, LogfileService) {
         $scope.loading = true;
 
         BuildService.list().then(
@@ -24,6 +25,30 @@ akoenig.cinnamon.controller('HomeController', [
                 $scope.loading = false;
             }
         );
+
+        // Long polling
+        (function polling() {
+            BuildService.list().then(
+                function success (builds) {
+                    var oldBuilds = angular.copy($scope.builds) || [];
+
+                    $scope.builds = builds;
+
+                    oldBuilds.forEach(function (b1) {
+                        if (b1.showLogfile) {
+                            $scope.builds.forEach(function (b2) {
+                                if (b1.id === b2.id) {
+                                    b2.showLogfile = true;
+                                    b2.logfile = b1.logfile;
+                                }
+                            });
+                        }
+                    });
+
+                    $timeout(polling, 5000);
+                }
+            );
+        })();
 
         $scope.isClearable = function () {
             var running = false;
