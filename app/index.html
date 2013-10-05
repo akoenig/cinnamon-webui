@@ -26,9 +26,10 @@
       <script src="scripts/vendor/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="ui grid">
-        <div class="column" data-ng-view></div>
+    <div class="main">
+        <div class="ui grid">
+            <div class="column" data-ng-view></div>
+        </div>
     </div>
 
     <footer>
@@ -38,6 +39,7 @@
         <!-- build:js scripts/libs.js -->
         <script src="scripts/vendor/angular-unstable/angular.js"></script>
         <script src="scripts/vendor/angular-route/angular-route.js"></script>
+        <script src="scripts/vendor/async/lib/async.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->

@@ -22,7 +22,7 @@ akoenig.cinnamon.service('BuildService', [
         var apiEndpoint = ConfigService.getApiEndpoint() + '/builds';
 
         /**
-         * DOCME
+         * Lists all available builds.
          *
          */
         this.list = function () {
@@ -32,6 +32,30 @@ akoenig.cinnamon.service('BuildService', [
                 .get(apiEndpoint)
                 .success(function (builds, status, headers) {
                     deferred.resolve(builds);
+                })
+                .error(function (data, status) {
+                    deferred.reject({
+                        status: status,
+                        data: data
+                    });
+                });
+
+            return deferred.promise;
+        };
+
+        /**
+         * Removes a specific build.
+         *
+         * @param {string} id The build id.
+         *
+         */
+        this.remove = function (id) {
+            var deferred = $q.defer();
+
+            $http
+                .delete(apiEndpoint + '/' + id)
+                .success(function () {
+                    deferred.resolve();
                 })
                 .error(function (data, status) {
                     deferred.reject({

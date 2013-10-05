@@ -4,6 +4,7 @@
   "dependencies": {
     "angular-unstable": "https://github.com/akoenig/bower-angular-unstable.git#1.2.0rc2",
     "angular-route": "~1.2.0-rc.2",
+    "async": "~0.2.5",
     "json3": "~3.2.4",
     "es5-shim": "~2.0.8"
   }
